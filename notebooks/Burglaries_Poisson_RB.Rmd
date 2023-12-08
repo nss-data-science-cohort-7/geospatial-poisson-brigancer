@@ -1,8 +1,13 @@
 ---
-title: "R Notebook"
+title: "Burglaries_Poisson_RB"
 output: html_notebook
 ---
-Analyzing Aggravated Burglaries in Davidson County
+```{r}
+library(sf)
+library(tidyverse)
+```
+
+Aggravated Burglaries in Davidson County
 Part 1 - Data Preparation
 
 You've been provided three datasets for this project:
@@ -12,6 +17,20 @@ You've been provided three datasets for this project:
     DC: A shapefile containing Davidson County census tracts
 
 ```{r}
+burglaries<-read_csv("../data/burglaries_2023.csv", col_types = cols(.default = "?", zip_code="f", weapon_primary="c", location_code="f",incident_number="c"), show_col_types = TRUE)
+```
+```{r}
+census<-read_csv("../data/census.csv", col_types = cols(.default = "?", state="f"), show_col_types = TRUE)
+```
+```{r}
+davidson<- st_read("../data/DC/DC.shp")
+```
+```{r}
+burglaries |> 
+  head()
+
+census |> 
+  head()
 
 ```
 
